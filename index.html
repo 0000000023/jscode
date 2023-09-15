@@ -1,17 +1,51 @@
+
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
+
 <head>
- <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <script src="https://cdnjs.cloudflare.com/ajax/libs/jsbarcode/3.11.3/JsBarcode.all.min.js"></script>
- <link rel="stylesheet" href="https://dl.dropbox.com/scl/fi/4dkosbeopyan12vs2v1ei/main.css?rlkey=0ydyxalb7clxf0zihi5px9y60">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>scan</title>
+    <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
 </head>
+
 <body>
-  <div class="content">
-    <input type="text" id="text">
-    <svg id="barcode"></svg>
-    <button id="btn">Generate</button>
-  </div>
-<script src="https://dl.dropbox.com/scl/fi/n1kqj6t60rl1zsehvw8nh/cpu.js?rlkey=0svd94vyf70ebcbeup3li7wo7"></script>
+    <h1>QR Code Reader using Javascript</h1>
+
+    <!-- QR SCANNER CODE BELOW  -->
+    <div class="row">
+      <div class="col">
+        <div id="reader"></div>
+      </div>
+      <div class="col" style="padding: 30px">
+        <h4>Scan Result </h4>
+        <div id="result">
+          Result goes here
+        </div>
+      </div>
+    
+    </div>
+    <script>
+        // When scan is successful fucntion will produce data
+function onScanSuccess(qrCodeMessage) {
+  document.getElementById("result").innerHTML =
+    '<span class="result">' + qrCodeMessage + "</span>";
+}
+
+// When scan is unsuccessful fucntion will produce error message
+function onScanError(errorMessage) {
+  // Handle Scan Error
+}
+
+// Setting up Qr Scanner properties
+var html5QrCodeScanner = new Html5QrcodeScanner("reader", {
+  fps: 10,
+  qrbox: 256
+});
+
+// in
+html5QrCodeScanner.render(onScanSuccess, onScanError);
+    </script>
 </body>
 </html>
